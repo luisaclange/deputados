@@ -102,6 +102,7 @@ function requestDados(int) {
 
 function requestDespesa(ano_analise) {
     //Sera utilizado uma conexao assincrona
+    let rel;
     let request = new XMLHttpRequest();
     let urlAuthTokenaux = url + '/despesas?ano=' + ano_analise + '&itens=1000&ordem=ASC';
     request.open('GET', urlAuthTokenaux, true); //Sincrona coloca 'false'
@@ -110,6 +111,16 @@ function requestDespesa(ano_analise) {
         if (this.readyState === 4) { //se a conexao esta ativa
             if (request.status === 200) { //conectou com sucesso
                 jsonlistDespesa = request.response;
+                rel = '<table class="tabela"><tr style="background-image: linear-gradient(to right, forestgreen, chartreuse);">';
+                rel += '<div class="relatorio_cabecalho"><th>Data</th><th>Tipo de Despesa</th><th>Nome do Fornecedor</th><th>Valor do documento</th></div></tr>';
+                for (let index = 0; index < jsonlistDespesa.dados.length; index++) {
+                    total += jsonlistDespesa.dados[index].valorDocumento;
+                    rel += '<tr><td>' + jsonlistDespesa.dados[index].dataDocumento + '</td>';
+                    rel += '<td>' + jsonlistDespesa.dados[index].tipoDespesa + '</td>';
+                    rel += '<td>' + jsonlistDespesa.dados[index].nomeFornecedor + '</td>';
+                    rel += '<td> R$' + jsonlistDespesa.dados[index].valorDocumento.toFixed(2) + '</td></tr>';
+                }
+                relatorio.innerHTML = rel;
             } else {
                 alert('Erro ao receber os dados: ' + request.statusText);
             };
@@ -146,7 +157,7 @@ function retornaDeputadoNome(texto) {
 
 function dadosDeputado(int) {
     let dados;
-    let rel
+    let rel;
     let total = 0;
     let ano_analise = parseInt(ano.options[ano.selectedIndex].text);
     dados = "<hr style=\"background-color: forestgreen;\"><div class='item2'><div class='subitem1'>" + jsonlistDeputado.dados[int].siglaPartido + "</div><div class='subitem2'>" + jsonlistDeputado.dados[int].nome + "</div><div class='subitem3'>" + jsonlistDeputado.dados[int].siglaUf + "</div></div><hr style=\"background-color: forestgreen;\">";
@@ -154,21 +165,14 @@ function dadosDeputado(int) {
     dados += '<div id="acima">';
     dados += '<div class="foto"><img src="' + jsonlistDeputado.dados[int].urlFoto + '" style="height:300px"></div>'
     dados += '<div class="texto">';
-    dados += 'Nome:   ' + jsonlistDeputado.dados[int].nome + '<br>';
+    dados += 'Nome político:   ' + jsonlistDeputado.dados[int].nome + '<br>';
     dados += 'Partido: ' + jsonlistDeputado.dados[int].siglaPartido + '<br>';
     dados += 'Estado: ' + jsonlistDeputado.dados[int].siglaUf + '<br>';
-    rel = '<table class="tabela"><tr style="background-image: linear-gradient(to right, forestgreen, chartreuse);">';
-    rel += '<div class="relatorio_cabecalho"><th>Data</th><th>Tipo de Despesa</th><th>Nome do Fornecedor</th><th>Valor do documento</th></div></tr>';
+
     for (let i = 0; i < 4; i++) {
         ano_analise += i;
         requestDespesa(ano_analise);
-        for (let index = 0; index < jsonlistDespesa.dados.length; index++) {
-            total += jsonlistDespesa.dados[index].valorDocumento;
-            rel += '<tr><td>' + jsonlistDespesa.dados[index].dataDocumento + '</td>';
-            rel += '<td>' + jsonlistDespesa.dados[index].tipoDespesa + '</td>';
-            rel += '<td>' + jsonlistDespesa.dados[index].nomeFornecedor + '</td>';
-            rel += '<td> R$' + jsonlistDespesa.dados[index].valorDocumento.toFixed(2) + '</td></tr>';
-        }
+
     }
     relatorio.innerHTML = rel;
     relatorio.style.display = 'none';
@@ -180,7 +184,7 @@ function dadosDeputado(int) {
 }
 
 function mostrarRelatorio() {
-    relatorio.style.display = 'block';
+    relatorio.style.display = 'flex';
 }
 
 function voltar() {

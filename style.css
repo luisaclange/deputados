@@ -198,7 +198,12 @@ footer {
     padding-right: 20px;
 }
 
-
+#relatorio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
 .tabela {
     display: block;
