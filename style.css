@@ -1,0 +1,135 @@
+select {
+    width: 35%;
+    border: transparent;
+    border-radius: 3px;
+    padding: 3px;
+    font-family: 'Antonio', sans-serif;
+    font-size: 20px;
+}
+
+select.option {
+    font-family: 'Antonio', sans-serif;
+    font-size: 20px;
+}
+
+#estado {
+    width: 5%;
+}
+
+body, html {
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Antonio', sans-serif; 
+    font-size: 20px;
+    background-color: rgb(41, 41, 41);
+}
+
+.topo {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right, forestgreen, chartreuse);
+    flex-direction: column;
+}
+
+.subtopo {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; 
+    align-content: center; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.cabecalho {
+    background-image: linear-gradient(to right, forestgreen, chartreuse);
+    margin: auto;
+    margin-left: -1%;
+    margin-right: -1%;
+    margin-bottom: 10px;
+    padding: 20px;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 0;
+}
+
+.item {
+    color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px;
+    margin: 0px;
+    margin-left: -1%;
+    margin-right: -1%;
+}
+
+.subitem1, .subitem2 {
+    text-align: center;
+    width: 45%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.item:hover  {
+    color: green;
+}
+
+.item:hover + hr {
+    background-color: green;
+}
+
+
+#nomeDeputado {
+    width: 35%;
+    font-family: 'Antonio', sans-serif;
+    font-size: 20px;
+    border-style: none;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+hr {
+    width: 90%;
+    background-color: grey;
+    height: 2px;
+    border: none;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    background-image: linear-gradient(to right, forestgreen, chartreuse);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+    padding-bottom: 20px;
+}
+
+.informacoes {
+    height: 300px;
+    margin: 30px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#campoResposta {
+    min-height: 400px;
+}
+
+.foto {
+    padding: 10px;
+    background-image: linear-gradient(to right, forestgreen, chartreuse);
+}
+
+
