@@ -207,7 +207,7 @@ function retornaDeputado() {
             campoResposta.innerHTML = '<hr>';
             check = false;
         }
-        campoResposta.innerHTML += "<div class='item' onclick='dadosDeputado(" + index + ")' ><div class='subitem1'  >" + jsonlistDeputado.dados[index].siglaPartido + "</div><div class='subitem2'>" + jsonlistDeputado.dados[index].nome + "</div><div class='subitem3'>" + jsonlistDeputado.dados[index].siglaUf + "</div></div><hr>";
+        campoResposta.innerHTML += "<div class='item' onclick='dadosDeputado(" + index + ")' onmouseover='gambiarra()'><div class='subitem1'  >" + jsonlistDeputado.dados[index].siglaPartido + "</div><div class='subitem2'>" + jsonlistDeputado.dados[index].nome + "</div><div class='subitem3'>" + jsonlistDeputado.dados[index].siglaUf + "</div></div><hr>";
     }
 }
 
@@ -220,9 +220,13 @@ function retornaDeputadoNome(texto) {
                 campoResposta.innerHTML = '<hr>';
                 check = false;
             }
-            campoResposta.innerHTML += "<div class='item' onclick='requestDados(" + index + ")' ><div class='subitem1'  >" + jsonlistDeputado.dados[index].siglaPartido + "</div><div class='subitem2'>" + jsonlistDeputado.dados[index].nome + "</div><div class='subitem3'>" + jsonlistDeputado.dados[index].siglaUf + "</div></div><hr>";
+            campoResposta.innerHTML += "<div class='item' onclick='requestDados(" + index + ")' onmouseover='gambiarra()' ><div class='subitem1'  >" + jsonlistDeputado.dados[index].siglaPartido + "</div><div class='subitem2'>" + jsonlistDeputado.dados[index].nome + "</div><div class='subitem3'>" + jsonlistDeputado.dados[index].siglaUf + "</div></div><hr>";
         }
     }
+}
+
+function gambiarra(e) {
+    e.target.previousSibling.previousSibling.style.backgroundColor = 'forestgreen';
 }
 
 function dadosDeputado(int) {
@@ -386,31 +390,38 @@ function inicio() {
 }
 
 ano.onchange = function () {
+    relatorio.style.display = 'none';
     requestDeputado();
 }
 selectPartido.onchange = function () {
+    relatorio.style.display = 'none';
     requestDeputado();
 }
 
 selectEstado.onchange = function () {
+    relatorio.style.display = 'none';
     requestDeputado();
 }
 
 nomeDeputado.onkeyup = function (e) {
+    relatorio.style.display = 'none';
     if (e.keyCode == 13 || e.which == 13) {
         requestDeputado();
     }
 }
 
 nomeDeputado.onblur = function () {
+    relatorio.style.display = 'none';
     requestDeputado();
 }
 
 pesquisar.onclick = function () {
+    relatorio.style.display = 'none';
     requestDeputado();
 }
 
 window.onload = function () {
+    relatorio.style.display = 'none';
     menuAno();
     requestPartido();
     menuEstado();
